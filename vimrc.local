@@ -1,9 +1,14 @@
-set lines=50 columns=190
+" set lines=50 columns=190
+:set fu
+" set fuopt=maxvert,maxhorz
+
+" Location of ctags
 let Tlist_Ctags_Cmd="/usr/local/Cellar/ctags/5.8/bin/ctags"
+
+" BufExplorer mapping
 nmap <c-tab> :BufExplorer<CR>
 
-colors asu1dark
-
+" ClosePair
 :inoremap ( ()<ESC>i
 :inoremap ) <c-r>=ClosePair(')')<CR>
 :inoremap { {<ESC>o <ESC>xo}<ESC>k$a
@@ -29,8 +34,10 @@ function ClosePair(char)
   endif
 endf
 
+" associates .js.erb files with javascript
 autocmd BufNewFile,BufRead *.js.erb set filetype=javascript
 
+" makes a long xml string pretty. Depends on xmllint
 function! DoPrettyXML()
   " save the filetype so we can restore it later
   let l:origft = &ft
